@@ -1,0 +1,154 @@
+<div class="container">
+  <br/>
+  <h1>Pipes</h1>
+  <hr/>
+  <table class="table table-inverse">
+    <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Pipe</th>
+      <th>Producto</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--PIPES-->
+    <tr>
+      <!--mayúscula-->
+      <td>{{ nombre }}</td>
+      <td> uppercase </td>
+      <td>{{nombre | uppercase}}</td>
+    </tr>
+    <tr>
+      <!--minúscula-->
+      <td>{{ nombre }}</td>
+      <td> lowercase </td>
+      <td>{{nombre | lowercase}}</td>
+    </tr>
+    <tr>
+      <!--Slice:N-->
+      <!--Obtiene las letras desde la posición N-->
+      <td>{{ nombre }}</td>
+      <td> slice:3 </td>
+      <td>{{nombre | slice:3}}</td>
+    </tr>
+    <tr>
+      <!--Slice:A:N-->
+      <!--Obtiene las primeras desde la posición A hasta la posición N-->
+      <td>{{ nombre }}</td>
+      <td> slice:0:6 </td>
+      <td>{{nombre | slice:0:6}}</td>
+    </tr>
+    <tr>
+      <!--Slice:A:N-->
+      <!--obtiene el contenido de las posiciones desde la posicion A a N en un arreglo-->
+      <td>{{ arreglo }}</td>
+      <td> slice:1:5 </td>
+      <td>{{arreglo | slice:1:5}}</td>
+    </tr>
+    <tr>
+      <!--DecimalPipe(number): es de la forma:  number{cuantos enteros muestra}.{cuantos digitos de fraccion quiero mostrar}-{max digitos a mostrar}-->
+     <!--Por default number deja 3 decimales-->
+      <!-- recibe parámetros string ' ' -->
+      <td>{{ PI }}</td>
+      <td> number </td>
+      <td>{{ PI | number: '3.1-5' }}</td><!-- number: '.1-5' si deseamos no darle formato a la parte entera-->
+    </tr>
+
+    <tr>
+      <!-- PercentPipe(percent)-->
+      <!-- Por defecto multiplica por 100 y agrega %-->
+      <!-- se puede configurar su formato similar a number-->
+      <td>{{ a }}</td>
+      <td>percent: '2.2-2'</td>
+      <td>{{a | percent: '2.2-2'}}</td>
+    </tr>
+
+    <!-- Currency Pipe - formatos de moneda (currency): currencyCode : mostrarSIMBOLO(boolean) : formato decimal -->
+    <!-- el currency code sigue el formate del iso 4217-->
+    <!-- Por default usa los dólares estadounidenses-->
+    <tr>
+      <td>{{ salario }}</td>
+      <td> currency</td>
+      <td>{{salario | currency}}</td>
+    </tr>
+    <tr>
+      <td>{{ salario }}</td>
+      <td> currency:'PEN'</td>
+      <td>{{ salario | currency:'PEN' }}</td>
+    </tr>
+    <tr>
+      <td>{{ salario }}</td>
+      <td> currency:'USD':true</td>
+      <td>{{ salario | currency:'USD':true }}</td>
+    </tr>
+    <tr>
+      <td>{{ salario }}</td>
+      <td> currency:'USD':true:'4.0-0'</td>
+      <td>{{ salario | currency:'USD':true:'4.0-0' }}</td>
+    </tr>
+    <!--Pipe Asincrono(async): nos sirve para utilizarlo con promesas o observables-->
+    <!-- async-->
+    <tr>
+      <td>{{ valorDePromesa }}</td>
+      <td> async</td>
+      <td>{{ valorDePromesa | async }}</td>
+    </tr>
+    <!-- DatePipe(date): date:format, sigue el estándar de w3-->
+    <tr>
+      <td>{{ fecha }}</td>
+      <td> date </td>
+      <td>{{ fecha | date }}</td>
+    </tr>
+    <tr>
+      <td>{{ fecha }}</td>
+      <td> date: 'medium' </td>
+      <td>{{ fecha | date:'medium' }}</td>
+    </tr>
+    <!--Formatos personalizado-->
+    <tr>
+      <td>{{ fecha }}</td>
+      <td> date: 'dd-MM-yyyy' </td>
+      <td>{{ fecha | date:'dd-MM-yyyy' }}</td>
+    </tr>
+    <tr>
+      <td>{{ fecha }}</td>
+      <td> date: 'MMMM-d' </td>
+      <td>{{ fecha | date:'MMMM-d' }}</td>
+    </tr>
+    <!--PipePersonalizado : capitalizar-->
+    <tr>
+      <td>{{ nombre2 }}</td>
+      <td> capitalizado </td>
+      <td>{{ nombre2 | capitalizado }}</td>
+    </tr>
+    <tr>
+      <td>{{ nombre2 }}</td>
+      <td> capitalizado:false </td>
+      <td>{{ nombre2 | capitalizado:false }}</td>
+    </tr>
+    <!--PipePersonalizado: constraseña-->
+    <tr>
+      <td>{{ clave }}</td>
+      <td> constrasena:{{activar}} <br> <button (click)="activar=!activar" type="button" class="btn btn-outline btn-primary">Activar/Desactivar</button></td>
+      <td>{{ clave | contrasena:activar }}</td>
+    </tr>
+
+
+    </tbody>
+
+  </table>
+  <h4 >Slice aplicado en un *ngFor: <small>*ngFor="let variable of arreglo | slice:4:8"</small></h4>
+  <!--También se puede aplicar el pipe slice a un *ngFor-->
+  <ul>
+    <li *ngFor="let variable of arreglo | slice:4:8">{{ variable }}</li>
+  </ul>
+  <!-- JSONPipe: muestra los datos de un objeto en formato json-->
+  <h4 >Pipe JSON</h4>
+  <pre class="pure">{{ heroe | json}}</pre>
+
+
+  <h4>Youtube <small>Video</small></h4>
+  <iframe width="370" height="220" [src]="video | domseguro: 'https://www.youtube.com/embed/'" frameborder="0" allowfullscreen></iframe>
+
+  <br><br><br><br><br>
+</div>
