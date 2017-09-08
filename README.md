@@ -1,5 +1,6 @@
 # Pipes
 
+Módulo donde usamos todos los pipes que presenta hasta ahora angular4, y creando algunos pipes personalizados.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2.
 
 ## Development server
